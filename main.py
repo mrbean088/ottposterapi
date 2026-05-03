@@ -51,7 +51,7 @@ async def _fetch_zee5(url: str) -> dict:
     # ── METHOD 1: Playwright (best results) ─────────────────────────────────
     try:
         async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=True)
+            browser = await p.chromium.launch(headless=True, args=["--no-sandbox", "--disable-dev-shm-usage"])
             context = await browser.new_context(
                 user_agent=ZEE5_HEADERS["User-Agent"]
             )
@@ -171,7 +171,7 @@ async def _fetch_bms(url: str) -> dict:
     """Fetch title, year, and landscape poster from BookMyShow using Playwright."""
 
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
+        browser = await p.chromium.launch(headless=True, args=["--no-sandbox", "--disable-dev-shm-usage"])
         context = await browser.new_context(
             user_agent=(
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
