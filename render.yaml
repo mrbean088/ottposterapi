@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: ott-image-extractor
+    runtime: docker
+    plan: standard
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"
+    healthCheckPath: /
